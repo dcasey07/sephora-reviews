@@ -1,4 +1,21 @@
 # Sephora Review Dashboard
+
+## Recent Updates
+I uploaded the resources, starter code, and some files that we'll need to develop later on. Please make sure you all create a branch on the github and always pull from main before beginning to work on anything to avoid issues with staying up to date on commits. Always upload to your own branch so the changes can be checked over first when pull requests are made.
+
+To create a new branch use the following, filling in what you want to call it after the -b
+`git checkout -b thenameofyourbranch`
+
+To push your files to your branch, use the following, filling in whatever you named your branch:
+`git push -u origin thenameofyourbranch`
+
+**Some notes about the files:**
+- In `reviews.ipynb` I already created a merged_df variable if you want to get started experimenting with the dataset, nothing is cleaned up yet though.
+- Feel free to unzip the `reviews_all.zip` file if you want to look at the csvs, but don't push any of them to the github - they are too large for it.
+- I coded `reviews.ipynb` with some modules that allow us to extract the zipped resources folder and then delete them automatically to avoid having them pushed to the repository later.
+  - This is really important. Basically make sure if you use `reviews.ipynb` to play around with the dataset, make sure you always run the first four cells to avoid hanging on to these csv files when you try to save your work later on.
+
+
 ## Project Proposal
 
 ## Overview
