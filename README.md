@@ -3,6 +3,11 @@
 ## Recent Updates
 I uploaded the resources, starter code, and some files that we'll need to develop later on. Please make sure you all create a branch on the github and always pull from main before beginning to work on anything to avoid issues with staying up to date on commits. Always upload to your own branch so the changes can be checked over first when pull requests are made.
 
+To pull from main before working on files:
+
+`git pull origin main`
+
+
 To create a new branch use the following, filling in what you want to call it after the -b:
 
 `git checkout -b thenameofyourbranch`
