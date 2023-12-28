@@ -1,3 +1,8 @@
+# Ignore .json files
+*.json
+# Ignore complete_df.csv
+Resources/complete_df.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
