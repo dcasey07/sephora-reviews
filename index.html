@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Page Title</title>
+  <title>Sephora Review Dashboard</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 
@@ -14,15 +14,19 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <h1>Dashboard Title</h1>
-        <p>Explain what we're doing here</p>
+        <h1>Sephora Review Dashboard</h1>
+        <p>Data Visualizations for Reviews from Mar 2022 to Mar 2023</p>
       </div>
     </div>
     <div class="row">
-      <div class="col-md-2">
+      <div class="col-md-3">
         <div class="well">
-          <h5>Dropdown Title Here</h5>
-          <select id="selDataset" onchange="optionChanged(this.value)"></select>
+          <h5>Sort by Category</h5>
+          <select id="selDatasetCat" onchange="optionChanged(this.value)"></select>
+        </div>
+        <div class="well">
+          <h5>Sort by Brand</h5>
+          <select id="selDatasetBrand" onchange="optionChanged(this.value)"></select>
         </div>
         <div class="panel panel-primary">
           <div class="panel-heading">
