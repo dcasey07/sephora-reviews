@@ -1,6 +1,8 @@
 # Sephora Review Dashboard
 
 ## Recent Updates
+1/3/24 (DC): Updated `app.js` so the dropdowns now support (All) functionality.
+
 12/29/23 (DC): Updated `index.html` and `app.js` so the dropdowns are populated with the category and brand info. There's code commented out for updating the graphs by category and brand when they get added in, so make sure you check that out to test if it's working while coding the visualizations.
 
 12/28/23 (DC): In order to get our json to load I had to shrink our dataset to only include entries from March 2022 to March 2023 (Mar 2023 are the most recent entries in the dataset). The good news is you guys should be able to open up `app.js` and be able to test your code and `console.log` the information using live server on the `index.html` file. For reference: `oneyear_df.json` is the name of the file, but it's already coded into `app.js`.
