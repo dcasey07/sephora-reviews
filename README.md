@@ -1,6 +1,8 @@
 # Sephora Review Dashboard
 
 ## Recent Updates
+1/6/24 (DC): Added `reviews.sqlite` and `app.py` with Flask API so we can create individual routes for our data. This is updated in `app.js` to now accommodate the routes rather than the hosted AWS .json file. Brand and category dropdowns function properly and update visualizations and information on the client. Added value score and top products list. Also added a price vs. rating scatter plot.
+
 1/3/24 (DC): Updated `app.js` so the dropdowns now support (All) functionality.
 
 12/29/23 (DC): Updated `index.html` and `app.js` so the dropdowns are populated with the category and brand info. There's code commented out for updating the graphs by category and brand when they get added in, so make sure you check that out to test if it's working while coding the visualizations.
