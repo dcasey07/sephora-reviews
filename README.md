@@ -16,11 +16,14 @@ This dashboard offers simple, but effective visualizations to consumers and prod
 ### Methodology
 This project was created using python and jupyter notebook to concatenate the data, and then cleaned by removing unnecessary columns. The data was then put into a sqlite database, where it was called to api routes using python and flask. The visualizations were then generated using JS and HTML through the d3 library, plotly, as well as Jason Davies' d3-cloud.
 
+Value score is calculated by taking the average rating per product and multiplying it by the review count. This value is then divided by the price of the product. To avoid the exponential effects of highly reviewed product that either have been on the market longer, or are potentially flooded by bots, a logarithm was used to smooth the curve on the review counts.
+
 ## Data Sources, Collection, Attributions, and Ethical Considerations
 - Data for this project was sourced from https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews by Nady Inky. The Wordcloud libray implentation was sourced from https://github.com/amueller/word_cloud.
 - Wordclouds were generated utlizing Jason Davies' d3-cloud module, which can be found here: https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js.
 - Information that pertained to personal consumer information regarding their physical features, such as eye color and skin tone, were intentionally omitted to remove any consumer biases or potential for singling out specific users.
 - Disclaimer was left in the hovertext of Value Score highlighting that it is merely a tool comprised using hard data from the dataset and does not in any way guarantee quality or performance when used for making purchasing decisions. In addition, there are zero biases or considerations made that would skew data towards any one particular brand or category.
+- The Value Score generated in the dashboard attempts to curb the effects of potential bots in the review space by applying a logarithm to the review counts in order to avoid exponential benefits to potentially over-reviewed products.
 - This project was created by Daniel Casey, Lisa Lonstein, Andre Mako, Suman Murali, and Tehreem Uzma.
 
 ## Recent Updates
