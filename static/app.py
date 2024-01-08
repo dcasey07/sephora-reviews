@@ -147,7 +147,8 @@ def positivenegative():
     # Query and group by product_name and sum the positive and negative feedback counts
     try:        
         query = session.query(
-            Reviews.product_name, 
+            Reviews.product_name,
+            Reviews.brand_name, 
             func.sum(Reviews.total_pos_feedback_count).label("total_positive_feedback"),
             func.sum(Reviews.total_neg_feedback_count).label("total_negative_feedback")
         ).group_by(Reviews.product_name)
@@ -168,7 +169,7 @@ def positivenegative():
     session.close()
 
     # Convert to list of dictionaries
-    feedback_data = [{"product_name": name, "total_positive_feedback": pos, "total_negative_feedback": neg} for name, pos, neg in results]
+    feedback_data = [{"product_name": name, "brand_name": brand, "total_positive_feedback": pos, "total_negative_feedback": neg} for name, brand, pos, neg in results]
     return jsonify(feedback_data)
 
 @app.route("/api/v1.0/productrating")
