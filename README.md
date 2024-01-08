@@ -26,7 +26,7 @@ Value score is calculated by taking the average rating per product and multiplyi
 - The Value Score generated in the dashboard attempts to curb the effects of potential bots in the review space by applying a logarithm to the review counts in order to avoid exponential benefits to potentially over-reviewed products.
 - This project was created by Daniel Casey, Lisa Lonstein, Andre Mako, Suman Murali, and Tehreem Uzma.
 
-## Recent Updates
+#### Recent Updates from Development
 1/8/24 (DC): Added wordcloud for the review headers to `app.js` and `index.html`. Also added right justified language to `index.html` so the visualizations should remain in the same general space when the Value Score panel is not fully populated.
 
 1/8/24 (DC): Added feedback count visualizations for brand and products to `app.js`.
@@ -64,42 +64,3 @@ To push your files to your branch, use the following, filling in whatever you na
 - Feel free to unzip the `reviews_all.zip` file if you want to look at the csvs, but don't push any of them to the github - they are too large for it.
 - I coded `reviews.ipynb` with some modules that allow us to extract the zipped resources folder and then delete them automatically to avoid having them pushed to the repository later.
   - This is really important. Basically make sure if you use `reviews.ipynb` to play around with the dataset, make sure you always run the first four cells to avoid hanging on to these csv files when you try to save your work later on.
-
-
-## Project Proposal
-
-## Overview
-The goal of this project is to do a study on 5 popular brands (Tatcha, Nars, Dior, Huda Beauty, Laneige) on Sephora and analyze their reviews to learn about their products
-
-Questions:
-1. What do the reviews tell the consumer about the products?
-  - Wordcloud, ingredients, keywords, etc.
-2. How does the price correlate to the rating?
-3. How does the number of reviews affect the rating?
-
-
-## Objectives
-1. Analyze the content of the reviews to highlight key words
-2. Compare results across the most popular brands
-3. Discover a correlation between review frequency and rating/price
-
-
-## Data Cleanup
-- **Translation API**: Some reviews are in French and will need to be translated to English in order to integrate with the Wordcloud
-- **Apostrophes and Accent Marks**: Many reviews utilize characters that do not translate well from code to plaintext
-- **Merging**: product_info.csv will need the primary_category column merged by product_id
-
-## Data Sources and Collection
-Data for this project was sourced from https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews by Nady Inky. The Wordcloud libray implentation was sourced from https://github.com/amueller/word_cloud.
-
-## Key Features
-1. Dropdown the select aggregations by product type
-2. Hovertext to show product information of the item
-
-## Technology Stack and Implementation
-- **Frontend**: JavaScript, CSS, HTML
-- **Backend**:
-- **Database**: postgresQL
-- **Data Processing**: Python, Pandas, Jupyter
-- **Hosting**: Github
-
