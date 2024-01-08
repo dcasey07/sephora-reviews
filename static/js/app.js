@@ -7,6 +7,8 @@ const catBrandDropdownURL = "http://127.0.0.1:5000/api/v1.0/catbranddropdown";
 const valueScoreURL = 'http://127.0.0.1:5000/api/v1.0/valuescore';
 const ratingPriceCorr = 'http://127.0.0.1:5000/api/v1.0/rating_vs_price';
 const positiveNegative = 'http://127.0.0.1:5000/api/v1.0/positivenegative';
+const titleWordCloud = 'http://127.0.0.1:5000/api/v1.0/titlewordcloud';
+// const bodyWordCloud = 'http://127.0.0.1:5000/api/v1.0/textwordcloud';
 
 // Call to populate dropdowns and update on load
 d3.json(catBrandDropdownURL).then(data => {
@@ -26,37 +28,24 @@ function populateDropdown(selector, options) {
 function updateCharts() {
     var selectedCategory = d3.select("#selDatasetCat").property("value");
     var selectedBrand = d3.select("#selDatasetBrand").property("value");
-    // updateBarChart(selectedCategory, selectedBrand);
     updateScatterPlot(selectedCategory, selectedBrand);
     displayTopTenValuescore(selectedCategory, selectedBrand);
     updateBrandFeedbackChart(selectedCategory);
     updateProductFeedbackChart(selectedCategory, selectedBrand);
+    updateTitleWordCloud(selectedCategory, selectedBrand);
+    // updateBodyWordCloud(selectedCategory, selectedBrand);
 }
 
 
-// Encode the URL so it can pass non-alphanumeric characters
+// Function to automatically encode the URL so it can pass non-alphanumeric characters
 function buildQueryURL(baseUrl, category, brand) {
     return `${baseUrl}?secondary_category=${encodeURIComponent(category)}&brand_name=${encodeURIComponent(brand)}`;
 }
-
-// function updateBarChart(category, brand) {
-//     var queryUrl = buildQueryURL(valueScoreURL, category, brand);
-//     d3.json(queryUrl).then(createBarChart).catch(error => console.error('Error:', error));
-// }
 
 function updateScatterPlot(category, brand) {
     var queryUrl = buildQueryURL(ratingPriceCorr, category, brand);
     d3.json(queryUrl).then(createScatterPlot).catch(error => console.error('Error:', error));
 }
-
-// function createBarChart(data) {
-//     const top10Data = data.sort((a, b) => b.value_score - a.value_score).slice(0, 10);
-//     const productNames = top10Data.map(item => item.product_name);
-//     const valueScores = top10Data.map(item => item.value_score);
-//     const plotData = [{ x: productNames, y: valueScores, type: 'bar' }];
-//     const layout = {title: 'Top 10 Products by Normalized Value Score', xaxis: { title: 'Product Name' }, yaxis: { title: 'Normalized Value Score'}};
-//     Plotly.newPlot('barChart', plotData, layout);
-// }
 
 function createScatterPlot(data) {
     const prices = data.map(item => item.price_usd);
@@ -150,10 +139,150 @@ function updateProductFeedbackChart(category, brand) {
     }).catch(error => console.error('Error:', error));
 }
 
+// function createBodyWordCloud(data) {
+//     let wordCounts = {};
+//     d3.select("#bodyWordCloud svg").remove();
+//     data.forEach(body => {
+//       // If statement to check for null values
+//       if (body) {
+//         let words = body.split(/\s+/);
+//         words.forEach(word => {
+//           // Format words to lowercase for readability  
+//           word = word.toLowerCase();
+//           if (!wordCounts[word]) {
+//             wordCounts[word] = 0;
+//           }
+//           wordCounts[word]++;
+//         });
+//       }
+//     });
+  
+//     // Convert wordcloud objects to array
+//     let wordEntries = Object.entries(wordCounts).map(([word, count]) => ({ text: word, size: count }));
+  
+//     // Set the dimensions and update svg variable
+//     let width = 850;
+//     let height = 300;
+//     let svg = d3.select("#bodyWordCloud").append("svg")
+//                 .attr("width", width)
+//                 .attr("height", height);
+  
+//     // Define word scaling
+//     let sizeScale = d3.scaleLinear()
+//                       .domain([d3.min(wordEntries, d => d.size), d3.max(wordEntries, d => d.size)])
+//                       .range([10, 100]);
+  
+//     let layout = d3.layout.cloud()
+//                    .size([width, height])
+//                    .words(wordEntries)
+//                    .padding(5)
+//                    .rotate(() => 0)
+//                    .fontSize(d => sizeScale(d.size))
+//                    .on("end", draw);
+  
+//     layout.start();
+  
+//     // Function for drawing the words
+//     function draw(words) {
+//       svg.append("g")
+//          .attr("transform", `translate(${width / 2},${height / 2})`)
+//          .selectAll("text")
+//          .data(words)
+//          .enter().append("text")
+//          .style("font-size", d => `${d.size}px`)
+//          .attr("text-anchor", "middle")
+//          .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
+//          .text(d => d.text);
+//     }
+//   }
+
+  function createTitleWordCloud(data) {
+    let wordCounts = {};
+    d3.select("#titleWordCloud svg").remove();
+    data.forEach(title => {
+      // If statement to check for null values
+      if (title) {
+        let words = title.split(/\s+/);
+        words.forEach(word => {
+          // Format words to lowercase for readability  
+          word = word.toLowerCase();
+          if (!wordCounts[word]) {
+            wordCounts[word] = 0;
+          }
+          wordCounts[word]++;
+        });
+      }
+    });
+  
+    // Convert wordcloud objects to array
+    let wordEntries = Object.entries(wordCounts).map(([word, count]) => ({ text: word, size: count }));
+  
+    // Set the dimensions and update svg variable
+    let width = 850;
+    let height = 300;
+    let svg = d3.select("#titleWordCloud").append("svg")
+                .attr("width", width)
+                .attr("height", height);
+  
+    // Define word scaling
+    let sizeScale = d3.scaleLinear()
+                      .domain([d3.min(wordEntries, d => d.size), d3.max(wordEntries, d => d.size)])
+                      .range([10, 100]);
+  
+    let layout = d3.layout.cloud()
+                   .size([width, height])
+                   .words(wordEntries)
+                   .padding(5)
+                   .rotate(() => 0)
+                   .fontSize(d => sizeScale(d.size))
+                   .on("end", draw);
+  
+    layout.start();
+  
+    // Function for drawing the words
+    function draw(words) {
+      svg.append("g")
+         .attr("transform", `translate(${width / 2},${height / 2})`)
+         .selectAll("text")
+         .data(words)
+         .enter().append("text")
+         .style("font-size", d => `${d.size}px`)
+         .attr("text-anchor", "middle")
+         .attr("transform", d => `translate(${d.x}, ${d.y}) rotate(${d.rotate})`)
+         .text(d => d.text);
+    }
+  }
+
+  
+  function updateTitleWordCloud(category, brand) {
+    var queryUrl = buildQueryURL(titleWordCloud, category, brand);
+    d3.json(queryUrl).then(data => {
+        let titles = data.map(item => item.review_title);
+        console.log('Titles for word cloud:', titles);
+        let titleText = 'Review Wordcloud';
+        if (category) titleText += ` - Category: ${category}`;
+        if (brand) titleText += ` - Brand: ${brand}`;
+        d3.select("#wordCloudTitle").text(titleText);
+        createTitleWordCloud(titles);
+    }).catch(error => console.error('Error fetching wordcloud data:', error));
+}
+
+// function updateBodyWordCloud(category, brand) {
+//     var queryUrl = buildQueryURL(bodyWordCloud, category, brand);
+//     d3.json(queryUrl).then(data => {
+//         let bodyText = data.map(item => item.review_text);
+//         console.log('Body text for word cloud:', bodyText);
+//         let titleText = 'Wordcloud for Reviews (by Body Text)';
+//         if (category) bodyText += ` - Category: ${category}`;
+//         if (brand) bodyText += ` - Brand: ${brand}`;
+//         d3.select("#bodyWordCloudTitle").text(bodyText);
+//         createTitleWordCloud(bodyText);
+//     }).catch(error => console.error('Error fetching word cloud data:', error));
+// }
 
 document.addEventListener("DOMContentLoaded", function() {
   const panelTitle = d3.select("#panelTitle");
   panelTitle.attr("title", "Value Score is a measure of product quality, popularity, and affordability. It is calculated based on average customer ratings, the number of reviews, and the product price, ensuring that higher scores represent better overall value relative to the product's listing price. Value Score is purely for research purposes and is in no way intended as a product advertisement or indication of guaranteed success when purchasing products.");
 
-
+  updateTitleWordCloud("", "");
 });
