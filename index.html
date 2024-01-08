@@ -14,7 +14,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12 jumbotron text-center">
-        <h1>Sephora Review Dashboard</h1>
+        <h1>Sephora Review Dashboard for Skincare Products</h1>
         <p>Data Visualizations for Reviews from Mar 2022 to Mar 2023</p>
       </div>
     </div>
@@ -22,31 +22,41 @@
       <div class="col-md-3">
         <div class="well">
           <h5>Sort by Category</h5>
-          <select id="selDatasetCat" onchange="optionChanged(this.value)"></select>
+          <select id="selDatasetCat"></select>
         </div>
         <div class="well">
           <h5>Sort by Brand</h5>
-          <select id="selDatasetBrand" onchange="optionChanged(this.value)"></select>
+          <select id="selDatasetBrand"></select>
         </div>
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title">Insert Side Bar Title Here</h3>
+            <h3 id="panelTitle" class="panel-title">Top Products by Value Score</h3>
           </div>
-          <div id="sample-metadata" class="panel-body"></div>
+          <div id="valuescore" class="panel-body"></div>
         </div>
       </div>
-      <div class="col-md-5">
-        <!-- Insert large graph name here -->
-        <div id=""></div>
-      </div>
-      <div class="col-md-5">
-        <!-- Insert large graph name here -->        
-        <div id=""></div>
+      <div class="col-md-9">
+        <div id="titleWordCloudContainer">
+          <h3 id="wordCloudTitle"></h3>
+          <div id="titleWordCloud"></div>
+        </div>
+        <!-- <div id="bodyWordCloudTitleContainer">
+          <h3 id="bodyWordCloudTitle"></h3>
+          <div id="bodyWordCloud"></div>
+        </div> -->
+        <div id="brandFeedbackChartContainer">
+          <div id="brandFeedbackChart"></div>
+        </div>
+        <div id="productFeedbackChartContainer">
+          <div id="productFeedbackChart"></div>
+        </div>
+        <div id="scatterPlotContainer">
+          <div id="scatter"></div>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <!-- Insert small graph name here -->
         <div id=""></div>
       </div>
     </div>
@@ -54,6 +64,7 @@
 
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
   <script src="./static/js/app.js"></script>
 
 </body>
