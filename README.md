@@ -1,6 +1,31 @@
 # Sephora Review Dashboard
 
+## Overview and Usage
+
+Welcome to the Sephora Skincare Review Dashboard! This app will empower users with the ability to generate visualizations using a database comprised of review data from Sephora's website detailing consumer reviews on skincare products from March 2022 to March 2023, as well as each of these products' price and rating. Upon loading the dashboard will populate with all of the data in the database into the following visualizations:
+- **Wordcloud of Review Headers:** Get the cliffnotes on how consumers review items on Sephora's website using the titles that they put on their reviews.
+- **Feedback Counts:** Split into two bar charts are visualizations that show the top brands and products in terms of how Sephora users respond to feedback on their reviews.
+- **Rating vs. Price:** A scatterplot that displays the average rating of products juxtaposed with their price.
+- **Value Score:** A ranking that employs a calculation of rating, price, and review count to assess the overall value of the product.
+Value score is a calculation that utilizes average rating per product, mulitplies it by a logaritmic value of the product's review count, and then divides those values by the price of the product to generate a score to assess the overall value of a product.
+Additionally, users can filter the data by choosing either **Category** and/or **Brand** to filter the data and provide more granular results.
+
+### Objective and Purpose: Why Use This Dashboard?
+This dashboard offers simple, but effective visualizations to consumers and producers alike by detaiing general consumer response to product lines while also taking deep looks at the categorical and brand breakdowns to see how different companies operate in the same marketplace. For example, filtering by brand will detail an entire brand's skincare catalog, allowing users to see how responsive useful the community of Sephora consumers interacts with their reviews, as well as how they price their products. Filtering even further by category will tighten the lens on a particular brand's catalog within it's own similar line of products. This enables users to see how their own products stack up against one another in terms of price, average rating, and overall feedback counts.
+
+### Methodology
+This project was created using python and jupyter notebook to concatenate the data, and then cleaned by removing unnecessary columns. The data was then put into a sqlite database, where it was called to api routes using python and flask. The visualizations were then generated using JS and HTML through the d3 library, plotly, as well as Jason Davies' d3-cloud.
+
+## Data Sources, Collection, Attributions, and Ethical Considerations
+- Data for this project was sourced from https://www.kaggle.com/datasets/nadyinky/sephora-products-and-skincare-reviews by Nady Inky. The Wordcloud libray implentation was sourced from https://github.com/amueller/word_cloud.
+- Wordclouds were generated utlizing Jason Davies' d3-cloud module, which can be found here: https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.js.
+- Information that pertained to personal consumer information regarding their physical features, such as eye color and skin tone, were intentionally omitted to remove any consumer biases or potential for singling out specific users.
+- Disclaimer was left in the hovertext of Value Score highlighting that it is merely a tool comprised using hard data from the dataset and does not in any way guarantee quality or performance when used for making purchasing decisions. In addition, there are zero biases or considerations made that would skew data towards any one particular brand or category.
+- This project was created by Daniel Casey, Lisa Lonstein, Andre Mako, Suman Murali, and Tehreem Uzma.
+
 ## Recent Updates
+1/8/24 (DC): Added wordcloud for the review headers to `app.js` and `index.html`. Also added right justified language to `index.html` so the visualizations should remain in the same general space when the Value Score panel is not fully populated.
+
 1/8/24 (DC): Added feedback count visualizations for brand and products to `app.js`.
 
 1/6/24 (DC): Added `reviews.sqlite` and `app.py` with Flask API so we can create individual routes for our data. This is updated in `app.js` to now accommodate the routes rather than the hosted AWS .json file, but the hosted .json file is still there (commented out) for testing code if needed, just keep in mind the load times if you use it. Brand and category dropdowns function properly and update visualizations and information on the client. Added value score and top products list. Also added a price vs. rating scatter plot.
