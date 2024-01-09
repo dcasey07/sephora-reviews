@@ -1,6 +1,6 @@
 # Sephora Review Dashboard
 
-Run `app.py` and click below to get started!
+Download the repo, run `app.py` and click below to get started!
 
 https://dcasey07.github.io/sephora-reviews/
 
