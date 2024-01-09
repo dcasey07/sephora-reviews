@@ -1,8 +1,8 @@
-https://dcasey07.github.io/sephora-reviews/
-
-
-
 # Sephora Review Dashboard
+
+Click below to get started!
+
+https://dcasey07.github.io/sephora-reviews/
 
 ## Overview and Usage
 
