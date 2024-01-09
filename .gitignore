@@ -1,9 +1,12 @@
-# Ignore .json files
+# Ignore Resource files for deployment
 Resources/complete_json.json
-# Ignore complete_df.csv
 Resources/complete_df.csv
-# Ignore reviews.db
-reviews.db
+Resources/reviews.sqlite
+Resources/complete_json.zip
+Resources/oneyear_df.json
+Resources/oneyear.csv
+Resources/product_info.csv
+Resources/reviews_all.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
